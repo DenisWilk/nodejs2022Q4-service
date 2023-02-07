@@ -1,18 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ArtistsService } from './artist.service';
+export class Artist {
+  id: string;
+  name: string;
+  grammy: boolean;
 
-describe('ArtistsService', () => {
-  let service: ArtistsService;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [ArtistsService],
-    }).compile();
-
-    service = module.get<ArtistsService>(ArtistsService);
-  });
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+  constructor(id: string, name: string, grammy: boolean) {
+    this.id = id;
+    this.name = name;
+    this.grammy = grammy;
+  }
+}

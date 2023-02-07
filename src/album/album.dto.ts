@@ -1,18 +1,27 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AlbumsController } from './album.controller';
+import { IsString, IsNotEmpty, IsInt, NotEquals } from 'class-validator';
 
-describe('AlbumsController', () => {
-  let controller: AlbumsController;
+export class CreateAlbumDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [AlbumsController],
-    }).compile();
+  @IsInt()
+  @IsNotEmpty()
+  year: number;
 
-    controller = module.get<AlbumsController>(AlbumsController);
-  });
+  @NotEquals(undefined)
+  artistId: string | null;
+}
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+export class UpdateAlbumDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsInt()
+  @IsNotEmpty()
+  year: number;
+
+  @NotEquals(undefined)
+  artistId: string | null;
+}

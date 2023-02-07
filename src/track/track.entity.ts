@@ -1,18 +1,21 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TracksService } from './track.service';
+export class Track {
+  id: string;
+  name: string;
+  artistId: string | null;
+  albumId: string | null;
+  duration: number;
 
-describe('TracksService', () => {
-  let service: TracksService;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [TracksService],
-    }).compile();
-
-    service = module.get<TracksService>(TracksService);
-  });
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+  constructor(
+    id: string,
+    name: string,
+    artistId: string | null,
+    albumId: string | null,
+    duration: number,
+  ) {
+    this.id = id;
+    this.name = name;
+    this.artistId = artistId;
+    this.albumId = albumId;
+    this.duration = duration;
+  }
+}

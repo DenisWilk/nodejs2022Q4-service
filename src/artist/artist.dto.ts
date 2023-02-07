@@ -1,18 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ArtistsController } from './artist.controller';
+import { IsString, IsNotEmpty, IsBoolean } from 'class-validator';
 
-describe('ArtistsController', () => {
-  let controller: ArtistsController;
+export class CreateArtistDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [ArtistsController],
-    }).compile();
+  @IsBoolean()
+  grammy: boolean;
+}
 
-    controller = module.get<ArtistsController>(ArtistsController);
-  });
+export class UpdateArtistDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+  @IsBoolean()
+  grammy: boolean;
+}
