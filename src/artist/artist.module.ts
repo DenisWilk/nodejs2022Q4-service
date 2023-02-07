@@ -7,12 +7,7 @@ import { AlbumModule } from 'src/album/album.module';
 import { FavoriteModule } from 'src/favorite/favorite.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    TrackModule,
-    AlbumModule,
-    FavoriteModule,
-  ],
+  imports: [DatabaseModule, TrackModule, AlbumModule, FavoriteModule],
   controllers: [ArtistController],
   providers: [ArtistService],
   exports: [ArtistService],
