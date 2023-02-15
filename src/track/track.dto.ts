@@ -5,10 +5,10 @@ export class CreateTrackDto {
   @IsNotEmpty()
   name: string;
 
-  @NotEquals(null)
+  @NotEquals(undefined)
   artistId: string | null;
 
-  @NotEquals(null)
+  @NotEquals(undefined)
   albumId: string | null;
 
   @IsInt()
@@ -21,10 +21,10 @@ export class UpdateTrackDto {
   @IsNotEmpty()
   name: string;
 
-  @NotEquals(null)
+  @NotEquals(undefined)
   artistId: string | null;
 
-  @NotEquals(null)
+  @NotEquals(undefined)
   albumId: string | null;
 
   @IsInt()
