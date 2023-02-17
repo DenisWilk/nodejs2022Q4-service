@@ -1,6 +1,9 @@
+version: '3.8'
+
 services:
   app:
     image: denis-app
+    container_name: denis-app
     depends_on:
       - database
     build: .
@@ -13,6 +16,7 @@ services:
 
   database:
     image: denis-database
+    container_name: denis-database
     build:
       context: .
       dockerfile: ./src/database/Dockerfile

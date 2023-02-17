@@ -1,13 +1,13 @@
 FROM node:18-alpine
 
-EXPOSE ${PORT}
+WORKDIR /usr/app/src
 
-WORKDIR /app
+COPY package.json package-lock.json ./
 
-COPY package*.json .
-
-RUN npm i
+RUN npm ci && npm cache clean --force 
 
 COPY . .
+
+EXPOSE ${PORT}
 
 CMD [ "npm", "run", "start" ]
