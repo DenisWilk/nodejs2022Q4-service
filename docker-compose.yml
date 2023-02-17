@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    image: denis-app
+    container_name: denis-app
+    depends_on:
+      - database
+    build: .
+    ports:
+      - ${PORT}:${PORT}
+    restart: unless-stopped
+    volumes:
+      - ./:/usr/app/src
+      - /usr/app/src/node_modules
+
+  database:
+    image: denis-database
+    container_name: denis-database
+    build:
+      context: .
+      dockerfile: ./src/database/Dockerfile
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    restart: unless-stopped
+    volumes:
+      - database-logs:/var/log/postgresql/postgresql.log
+      - database-data:/var/lib/postgresql/data/
+
+volumes:
+  database-logs:
+  database-data:
+
+networks:
+  default:
+    driver: bridge
