@@ -1,4 +1,4 @@
-import { Exclude } from 'class-transformer';
+import { Exclude, Type, Transform } from 'class-transformer';
 
 export class User {
   id: string;
@@ -6,23 +6,19 @@ export class User {
 
   @Exclude()
   password: string;
-  version: number;
-  createdAt: number;
-  updatedAt: number;
 
-  constructor(
-    id: string,
-    login: string,
-    password: string,
-    version: number,
-    createdAt: number,
-    updatedAt: number,
-  ) {
-    this.id = id;
-    this.login = login;
-    this.password = password;
-    this.version = version;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+  hashedRefresh: string;
+  version: number;
+
+  @Type(() => Date)
+  @Transform((value) => value.valueOf(), { toPlainOnly: true })
+  createdAt: Date;
+
+  @Type(() => Date)
+  @Transform((value) => value.valueOf(), { toPlainOnly: true })
+  updatedAt: Date;
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
   }
 }

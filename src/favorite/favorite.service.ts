@@ -46,7 +46,7 @@ export class FavoriteService {
     const item = await this.prisma[type].findFirst({ where: { id } });
 
     if (!item) {
-      throw new UnprocessableEntityException("ID doesn't exist");
+      throw new UnprocessableEntityException('Error! Id not found.');
     }
 
     const favorite = await this.prisma.favorite.findMany();
@@ -75,7 +75,7 @@ export class FavoriteService {
         data: { favoriteId: { set: null } },
       });
     } catch (error) {
-      throw new NotFoundException(`ID ${id} not found`);
+      throw new NotFoundException('Error! Id not found.');
     }
   }
 }
