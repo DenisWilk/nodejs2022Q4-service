@@ -6,14 +6,4 @@ export class Favorite {
   artists: ArtistModule[];
   albums: AlbumModule[];
   tracks: TrackModule[];
-
-  constructor(
-    artists: ArtistModule[],
-    albums: AlbumModule[],
-    tracks: TrackModule[],
-  ) {
-    this.artists = artists;
-    this.albums = albums;
-    this.tracks = tracks;
-  }
 }
