@@ -1,33 +1,29 @@
-import { IsInt, IsNotEmpty, IsString, NotEquals } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  ValidateIf,
+  IsUUID,
+  IsInt,
+  IsPositive,
+} from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateTrackDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @NotEquals(undefined)
+  @ValidateIf((_, value) => value !== null)
+  @IsUUID('4')
   artistId: string | null;
 
-  @NotEquals(undefined)
+  @ValidateIf((_, value) => value !== null)
+  @IsUUID('4')
   albumId: string | null;
 
   @IsInt()
-  @IsNotEmpty()
+  @IsPositive()
   duration: number;
 }
 
-export class UpdateTrackDto {
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
-  @NotEquals(undefined)
-  artistId: string | null;
-
-  @NotEquals(undefined)
-  albumId: string | null;
-
-  @IsInt()
-  @IsNotEmpty()
-  duration: number;
-}
+export class UpdateTrackDto extends PartialType(CreateTrackDto) {}

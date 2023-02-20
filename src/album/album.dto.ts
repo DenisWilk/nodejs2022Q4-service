@@ -1,4 +1,11 @@
-import { IsString, IsNotEmpty, IsInt, NotEquals } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsInt,
+  ValidateIf,
+  IsUUID,
+} from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateAlbumDto {
   @IsString()
@@ -9,19 +16,9 @@ export class CreateAlbumDto {
   @IsNotEmpty()
   year: number;
 
-  @NotEquals(undefined)
+  @ValidateIf((_, value) => value !== null)
+  @IsUUID('4')
   artistId: string | null;
 }
 
-export class UpdateAlbumDto {
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
-  @IsInt()
-  @IsNotEmpty()
-  year: number;
-
-  @NotEquals(undefined)
-  artistId: string | null;
-}
+export class UpdateAlbumDto extends PartialType(CreateAlbumDto) {}

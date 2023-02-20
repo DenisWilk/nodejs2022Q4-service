@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsBoolean } from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateArtistDto {
   @IsString()
@@ -6,14 +7,8 @@ export class CreateArtistDto {
   name: string;
 
   @IsBoolean()
-  grammy: boolean;
-}
-
-export class UpdateArtistDto {
-  @IsString()
   @IsNotEmpty()
-  name: string;
-
-  @IsBoolean()
   grammy: boolean;
 }
+
+export class UpdateArtistDto extends PartialType(CreateArtistDto) {}
