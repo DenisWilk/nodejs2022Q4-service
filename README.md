@@ -27,15 +27,20 @@ After application running open new terminal and enter:
 ```
 npm run docker:test
 ```
+
+## Auto-fix and format
+
 ```
-npm run docker:lint
+npm run lint
+```
+```
+npm run format
 ```
 
-## Create database entities
+## Create migration
 
 After application running open new terminal and enter:
 
 ```
 npm run docker:migrate
 ```
-
