@@ -38,3 +38,4 @@ After application running open new terminal and enter:
 ```
 npm run docker:migrate
 ```
+
