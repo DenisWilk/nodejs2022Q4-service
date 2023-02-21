@@ -14,6 +14,7 @@ export class UserService {
 
   async findAll(): Promise<Omit<User, 'password'>[]> {
     const users = await this.prisma.user.findMany();
+
     return users.map((user) => {
       const { password, ...data } = user;
       return data;
@@ -32,11 +33,14 @@ export class UserService {
   }
 
   async create(CreateUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
-    const { password, ...user } = await this.prisma.user.create({
-      data: { ...CreateUserDto },
+    const newUser = await this.prisma.user.create({
+      data: {
+        ...CreateUserDto,
+        version: 1,
+      },
     });
 
-    return user;
+    return newUser;
   }
 
   async update(

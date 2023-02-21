@@ -6,7 +6,9 @@ COPY package.json package-lock.json ./
 
 RUN npm ci && npm cache clean --force 
 
-COPY . .
+COPY prisma ./prisma/
+
+RUN npx prisma generate
 
 EXPOSE ${PORT}
 

@@ -1,4 +1,4 @@
-import { Exclude, Type, Transform } from 'class-transformer';
+import { Exclude, Transform, Type } from 'class-transformer';
 
 export class User {
   id: string;
@@ -6,8 +6,6 @@ export class User {
 
   @Exclude()
   password: string;
-
-  hashedRefresh: string;
   version: number;
 
   @Type(() => Date)

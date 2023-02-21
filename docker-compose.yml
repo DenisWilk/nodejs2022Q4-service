@@ -9,6 +9,10 @@ services:
     build: .
     ports:
       - ${PORT}:${PORT}
+    environment:
+        DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?schema=public
+    env_file:
+        - .env
     restart: unless-stopped
     volumes:
       - ./:/usr/app/src
