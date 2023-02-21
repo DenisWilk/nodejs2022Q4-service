@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "nest start",
-    "start:dev": "nest start --watch",
+    "start:dev": "npx prisma migrate deploy && nest start --watch",
     "start:prod": "node dist/main",
     "start:debug": "nest start --debug --watch",
     "docker": "docker-compose up",
