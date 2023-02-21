@@ -4,7 +4,7 @@
 
 1. git clone git@github.com:DenisWilk/nodejs2022Q4-service.git
 
-2. switch to docker branch
+2. switch to database-&-ORM branch
 
 3. npm i
 
@@ -26,4 +26,15 @@ After application running open new terminal and enter:
 
 ```
 npm run docker:test
+```
+```
+npm run docker:lint
+```
+
+## Create database entities
+
+After application running open new terminal and enter:
+
+```
+npm run docker:migrate
 ```
